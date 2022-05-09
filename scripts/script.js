@@ -30,7 +30,7 @@ if(input.value.trim().length < min) {
 }
 }
 
-// Passwoed Match
+// Password Match
 
 const checkPasswordMatch = function(input1,input2){
 if(input1.value.trim() !== '' && input2.value.trim() !== ''){
