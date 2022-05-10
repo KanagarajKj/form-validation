@@ -7,8 +7,6 @@ const passwordTwo = document.getElementById("confirm-password");
 
 const arrElement = [userName,email,password,passwordTwo];
 
-
-
 const checkRequired = (arrElement)=>{
     arrElement.map(input => {
         if(input.value.trim() === ''){

@@ -105,6 +105,7 @@ body {
 
 .form_control span {
     visibility: hidden;
+    position: absolute;
 }
 
 .form_control.error span {
