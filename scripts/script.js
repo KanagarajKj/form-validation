@@ -8,9 +8,9 @@ const passwordTwo = document.getElementById("confirm-password");
 const arrElement = [userName,email,password,passwordTwo];
 
 const checkRequired = (arrElement)=>{
-    arrElement.map(input => {
+    arrElement.forEach(input => {
         if(input.value.trim() === ''){
-            showError(input,`${input.name} is required`);
+            showError(input,`${message(input)} is required`);
         }else{
             showsucess(input,'Sucess');
         }
@@ -20,9 +20,9 @@ const checkRequired = (arrElement)=>{
 // Check Length
 const checkLength = function(input, min, max){
 if(input.value.trim().length < min) {
-    showError(input,`${input.name} should be atleast 5 character`);
+    showError(input,`${message(input)} should be atleast 5 character`);
 }else if (input.value.trim().length > max) {
-    showError(input, `${input.name} should be lessthan 12 character`);
+    showError(input, `${message(input)} should be lessthan 12 character`);
 }else{
     showsucess(input,'Sucess')
 }
@@ -41,7 +41,20 @@ if(input1.value.trim() !== '' && input2.value.trim() !== ''){
 }
 }
 
+const message = function(input){
+    const errorMessage = input.name.replace(/-p/,' P');
+    return errorMessage.charAt(0).toUpperCase() + errorMessage.slice(1);
+}
 
+// Email Validate
+const checkEmail = function(input){
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(String(input.value).toLowerCase().trim())) {
+        showsucess(input,'Sucess');
+    }else{
+        showError(input,'Enter valid Email ID')
+    }
+}
 
 form.addEventListener('submit',(e) =>{
     e.preventDefault();
@@ -49,6 +62,7 @@ form.addEventListener('submit',(e) =>{
     checkLength(userName,5,10);
     checkLength(password,5,12);
     checkLength(passwordTwo,5,12);
+    checkEmail(email)
     checkPasswordMatch(password,passwordTwo);
 
 })
